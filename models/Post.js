@@ -1,7 +1,7 @@
 // models/Post.js
 const { DataTypes } = require('sequelize');
-const sequelize = require('../db');  // Ensure correct path to db.js
-const User = require('./User');  // Ensure User model is imported correctly
+const sequelize = require('../db'); 
+const User = require('./User');  
 
 const Post = sequelize.define('Post', {
   title: {
@@ -12,6 +12,19 @@ const Post = sequelize.define('Post', {
     type: DataTypes.TEXT,
     allowNull: false,
   },
+  userId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  }
+}, {
+  indexes: [
+    {
+      fields: ['userId'],
+    },
+    {
+      fields: ['title'],
+    },
+  ],
 });
 
 User.hasMany(Post, { as: 'posts' });

@@ -13,6 +13,7 @@ const checkUser = async (username) => {
     }
   } catch (error) {
     console.error('Error checking user:', error);
+    throw error; // Re-throw the error to handle it in the calling function
   }
 };
 
